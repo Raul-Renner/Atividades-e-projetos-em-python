@@ -1,0 +1,58 @@
+CREATE TABLE alunos(
+id_aluno int not null auto_increment primary key,
+nome varchar(255) not null not null,
+data_nascimento date not null,
+cidade varchar(255) not null,
+estado varchar(2) not null,
+cpf varchar(11) not null
+);
+CREATE TABLE cursos(
+id_curso int not null auto_increment primary key,
+nome varchar(255) not null
+);
+CREATE TABLE alunos_cursos(
+id_aluno_curso int not null primary key auto_increment,
+id_aluno int  not null,
+id_curso int not null,
+foreign key (id_aluno) references alunos(id_aluno),
+foreign key(id_curso) references cursos(id_curso)
+);
+CREATE TABLE notas(
+id_nota int not null auto_increment primary key,
+descricao_atividade varchar(255) not null,
+valor_nota DECIMAL(5,2) not null,
+id_aluno_curso int not null,
+foreign key (id_aluno_curso) references alunos_cursos(id_aluno_curso)
+
+);
+
+Insert alunos(nome,data_nascimento, endereco, cidade, estado, cpf) values ('Raul', '1998-08-24','Rua Raimunda da conceicao 143','Horizonte','CE','05545542131');
+
+Insert alunos(nome,data_nascimento, endereco, cidade, estado, cpf) 
+values ('Rayana', '1998-08-24','Rua Raimunda Maria Cruz 14','Guarulhos','SP','01123421431');
+Insert alunos(nome,data_nascimento, endereco, cidade, estado, cpf) 
+values ('Rayssa', '1998-08-24','Rua Rafael da Costa 243','Olinda','PE','35123234421');
+
+INSERT cursos(nome) values ('Java');
+INSERT cursos(nome) values ('CSS');
+INSERT cursos(nome) values ('NODEJS');
+
+insert alunos_cursos(id_aluno,id_curso) values (1,1);
+insert alunos_cursos(id_aluno,id_curso) values (1,2);
+insert alunos_cursos(id_aluno,id_curso) values (1,3);
+
+insert alunos_cursos(id_aluno,id_curso) values (2,1);
+insert alunos_cursos(id_aluno,id_curso) values (2,3);
+
+insert alunos_cursos(id_aluno,id_curso) values (3,1);
+insert alunos_cursos(id_aluno,id_curso) values (3,2);
+insert alunos_cursos(id_aluno,id_curso) values (3,3);
+
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (1,"PROVA 1",10);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (2,"PROVA 2",8);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (3,"Exercicio 1",7);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (4,"PROVA 1",8);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (5,"PROVA 2",10);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (6,"Prova 1",8);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (7,"PROVA 2",7);
+insert notas(id_aluno_curso, descricao_atividade, valor_nota) values (8,"Exercicio 1",10);
